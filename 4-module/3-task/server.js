@@ -1,6 +1,9 @@
 const url = require('url');
 const http = require('http');
 const path = require('path');
+const fs = require('fs');
+
+const removeFile = require('./remove-file');
 
 const server = new http.Server();
 
@@ -11,6 +14,22 @@ server.on('request', (req, res) => {
 
   switch (req.method) {
     case 'DELETE':
+
+      if (!pathname || ~pathname.indexOf('/')) {
+        res.statusCode = 400;
+        res.end('Bad request');
+        return;
+      }
+
+      fs.access(filepath, fs.constants.F_OK, (err) => {
+        if (err) {
+          res.statusCode = 404;
+          res.end('Not found');
+          return;
+        }
+
+        removeFile(filepath, res);
+      });
 
       break;
 

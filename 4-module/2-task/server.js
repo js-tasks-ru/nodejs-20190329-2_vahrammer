@@ -3,7 +3,7 @@ const http = require('http');
 const path = require('path');
 const url = require('url');
 
-const sendFileToClient = require('./send-file-to-client');
+const saveFile = require('./send-file-to-client');
 
 const server = new http.Server();
 
@@ -22,7 +22,7 @@ server.on('request', (req, res) => {
 
       fs.access(filepath, fs.constants.F_OK, (err) => {
         if (err) {
-          sendFileToClient(filepath, req, res);
+          saveFile(filepath, req, res);
           return;
         }
 
