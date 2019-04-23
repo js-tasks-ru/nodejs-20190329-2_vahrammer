@@ -37,7 +37,7 @@
     xhr.open("GET", "/subscribe?r=" + Math.random(), true);
 
     xhr.onload = function() {
-      if(xhr.status != 200) return this.onerror();
+      if(xhr.status !== 200) return this.onerror();
 
       const li = document.createElement('li');
       li.textContent = this.responseText;
