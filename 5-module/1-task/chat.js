@@ -17,4 +17,5 @@ exports.send = function(message) {
     ctx.body = message;
     resolve();
   });
+  connections.length = 0;
 };
