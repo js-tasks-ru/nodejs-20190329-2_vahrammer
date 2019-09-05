@@ -1,5 +1,6 @@
 module.exports = {
   mongodb: {
-    uri: 'mongodb://localhost/users_app_test',
+    uri: 'mongodb://localhost/hw6',
+    debug: false,
   },
 };
